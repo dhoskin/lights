@@ -38,7 +38,7 @@ static inline void npx_chan(int x)
 {
 	if (x) {
 		npx_zero(); npx_zero(); npx_zero(); npx_zero();
-		npx_one(); npx_one(); npx_one(); npx_one();
+		npx_zero(); npx_one(); npx_one(); npx_one();
 	} else {
 		npx_zero(); npx_zero(); npx_zero(); npx_zero();
 		npx_zero(); npx_zero(); npx_zero(); npx_zero();
@@ -50,7 +50,7 @@ static inline void npx_px(int r, int g, int b, int w)
 	npx_chan(r);
 	npx_chan(g);
 	npx_chan(b);
-	npx_chan(w);
+//	npx_chan(w);
 }
 
 void npx(void)
@@ -62,7 +62,13 @@ void npx(void)
 	for(;;){
 		delay(125);
 
-		npx_px(1, 0, x == 0, 0);
+		for(x = 0; x < 50; ++x){
+			npx_px(1, 0, 0, 0);
+			npx_px(0, 1, 0, 0);
+			npx_px(0, 0, 1, 0);
+		}
+
+/*		npx_px(1, 0, x == 0, 0);
 		npx_px(0, 1, x == 1, 0);
 		npx_px(1, 0, x == 2, 0);
 		npx_px(0, 1, x == 3, 0);
@@ -80,6 +86,7 @@ void npx(void)
 			sign = -1;
 			x = 7;
 		}
+*/
 /*
 		npx_px(0, 0, 1, 0);
 		npx_px(0, 0, 0, 1);
