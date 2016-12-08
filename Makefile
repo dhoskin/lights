@@ -1,5 +1,8 @@
 # Somewhat ripped off from teensycore/teensy3/Makefile
 
+BPP = 3
+PX = 150
+
 all: main.hex
 
 TEENSYCORE = teensycore/teensy3
@@ -12,14 +15,14 @@ CXX = $(TOOLCHAIN)cxx
 OBJCOPY = $(TOOLCHAIN)objcopy
 SIZE = $(TOOLCHAIN)size
 
-CPPFLAGS = -DF_CPU=48000000 -D__$(MCU)__ -Iteensycore/teensy3
+CPPFLAGS = -DF_CPU=48000000 -D__$(MCU)__ -Iteensycore/teensy3 -DBPP=$(BPP) -DPX=$(PX)
 
 CFLAGS = -Wall -g -Os -mcpu=cortex-m0plus -mthumb
 
 LDFLAGS = -Os -Wl,--gc-sections,--defsym=__rtc_localtime=0 -mcpu=cortex-m0plus -mthumb -T$(LDSCRIPT)
 
 SYS_OBJS = $(TEENSYCORE)/mk20dx128.o $(TEENSYCORE)/pins_teensy.o
-OBJS = main.o neopixel.o
+OBJS = main.o neopixel.o holly.o
 
 OBJS += $(SYS_OBJS)
 
