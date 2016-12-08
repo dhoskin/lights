@@ -4,7 +4,7 @@ void npx_show(const unsigned char *buf, int n);
 
 static void green(unsigned char *p)
 {
-	*p++ = 63;
+	*p++ = 3;
 	*p++ = 0;
 	*p++ = 0;
 #if BPP == 4
@@ -15,7 +15,7 @@ static void green(unsigned char *p)
 static void red(unsigned char *p)
 {
 	*p++ = 0;
-	*p++ = 63;
+	*p++ = 3;
 	*p++ = 0;
 #if BPP == 4
 	*p++ = 0;
@@ -28,11 +28,11 @@ static void white(unsigned char *p)
 	*p++ = 0;
 	*p++ = 0;
 	*p++ = 0;
-	*p++ = 63;
+	*p++ = 3;
 #else
-	*p++ = 31;
-	*p++ = 31;
-	*p++ = 15;
+	*p++ = 3;
+	*p++ = 3;
+	*p++ = 2;
 #endif
 }
 
