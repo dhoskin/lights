@@ -1,0 +1,49 @@
+From cc0b727bb086e9f2c255aab7577d66c468b13b7e Mon Sep 17 00:00:00 2001
+From: David Hoskin <davidrhoskin@gmail.com>
+Date: Sun, 11 Dec 2016 22:00:00 -0800
+Subject: [PATCH] Comment out analog and usb stuff in pins_teensy.c.
+
+We don't need this code for now, and it pulls in everything else.
+---
+ teensy3/pins_teensy.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/teensy3/pins_teensy.c b/teensy3/pins_teensy.c
+index 09fa618..2311d71 100644
+--- a/teensy3/pins_teensy.c
++++ b/teensy3/pins_teensy.c
+@@ -578,12 +578,14 @@ void _init_Teensyduino_internal_(void)
+ 	TPM1_C1SC = 0x28;
+ 	TPM1_SC = FTM_SC_CLKS(1) | FTM_SC_PS(0);
+ #endif
++#ifdef XXX_DRH
+ 	analog_init();
+ 	// for background about this startup delay, please see these conversations
+ 	// https://forum.pjrc.com/threads/36606-startup-time-(400ms)?p=113980&viewfull=1#post113980
+ 	// https://forum.pjrc.com/threads/31290-Teensey-3-2-Teensey-Loader-1-24-Issues?p=87273&viewfull=1#post87273
+ 	delay(400);
+ 	usb_init();
++#endif /* XXX_DRH */
+ }
+ 
+ 
+@@ -670,6 +672,7 @@ void _init_Teensyduino_internal_(void)
+ #define FTM_PINCFG(pin) FTM_PINCFG2(pin)
+ #define FTM_PINCFG2(pin) CORE_PIN ## pin ## _CONFIG
+ 
++#ifdef XXX_DRH
+ static uint8_t analog_write_res = 8;
+ 
+ // SOPT4 is SIM select clocks?
+@@ -995,7 +998,7 @@ void analogWriteFrequency(uint8_t pin, float frequency)
+ 	}
+ #endif
+ }
+-
++#endif /* XXX_DRH */
+ 
+ 
+ // TODO: startup code needs to initialize all pins to GPIO mode, input by default
+-- 
+2.10.2
+
