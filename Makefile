@@ -19,7 +19,7 @@ CFLAGS = -Wall -g -Os -mcpu=cortex-m0plus -mthumb
 LDFLAGS = -Os -Wl,--gc-sections,--defsym=__rtc_localtime=0 -mcpu=cortex-m0plus -mthumb -T$(LDSCRIPT)
 
 SYS_OBJS = $(TEENSYCORE)/mk20dx128.o $(TEENSYCORE)/pins_teensy.o
-OBJS = 
+OBJS = main.o
 
 OBJS += $(SYS_OBJS)
 
