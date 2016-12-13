@@ -4,11 +4,11 @@ void yield(void){
 }
 
 void npx_init(void);
-void holly(void);
+void rainbow(void);
 
 void main(void)
 {
 	npx_init();
 	for (;;)
-		holly();
+		rainbow();
 }
